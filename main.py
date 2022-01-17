@@ -2,7 +2,9 @@ import logging
 import os
 from termcolor import colored
 
-import features.rules
+import rulesets.rules as rules
+from featuresets.features import features
+
 from data.dataset import testdata
 
 def MyLog(name,level):
@@ -22,13 +24,6 @@ def traffic_light(param):
 		return colored('NEGATIVE','red')
 	else:
 		return colored('NEUTRAL','yellow')
-
-features = {
-	"f1": {'description': 'victim_age',   'function': features.rules.f_age, 'params': 'v_age'},
-	"f2": {'description': 'offender_age', 'function': features.rules.f_age, 'params': 'o_age'},
-	"f3": {'description': 'relationship', 'function': features.rules.f_rel, 'params': 'relationship'},
-	"f4": {'description': 'category_code', 'function':features.rules.f_catcode, 'params': 'category_code'}
-}
 
 if __name__ == '__main__':
 	_ = os.system('clear')
