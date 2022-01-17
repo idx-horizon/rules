@@ -1,4 +1,4 @@
-import config
+import utils.config as config
 
 def is_relationship(param):
 #	valid = ['father','mother', 'partner', 'husband', 'wife']
