@@ -1,48 +1,37 @@
 import logging
 import os
-from termcolor import colored
 
-import rulesets.rules as rules
-from featuresets.features import features
-
+import utils.rules as rules
+from utils.features import features
 from data.dataset import testdata
 
-def MyLog(name,level):
-	log = logging.Logger(name)
-	log.addHandler(logging.StreamHandler())
-	log.setLevel(level)
-	return log
-
-def NZ(arg):
-	return arg if arg else ''
+from utils.utils import  MyLog, NZ, traffic_light
 
 
-def traffic_light(param):
-	if param>0:
-		return colored('POSTIVE','green')
-	elif param<0:
-		return colored('NEGATIVE','red')
-	else:
-		return colored('NEUTRAL','yellow')
-
-if __name__ == '__main__':
-	_ = os.system('clear')
+def run(adr):
 	mylog=MyLog(__name__, logging.INFO)
+	mylog.info('** applying feature rules for {}'.format(adr))
 
-	mylog.debug('Start')
+	if adr not in features.keys():
+		mylog.error('ERROR: No features defined for ADR: {}'.format(adr))
+		return None
+
 	for d in testdata:
 		mylog.info('\n** Test case: [{}]'.format(d))
-		for f in features:
-			func=features[f]['function']
-			args=d.get(features[f]['params'],'_missing_'+features[f]['params'])
+		for f in features[adr]:
+			func=f['function']
+			args=d.get(f['params'],'_missing_'+f['params'])
 			result= func(args) if not str(args).startswith('_missing_') else 0
-			mylog.info('{:<20} = {:<2} - {:<15} = {:>2} - {}({:>2})'.format(
+			mylog.info('{:<20} {:>2} - {:<15}: {}({:>2})'.format(
 								traffic_light(result),
-								f,
-								features[f]['description'],
 								result,
+								f['description'],
 								func.__name__,
-								NZ(args), ))
+								NZ(args)
+				 ))
 
-	mylog.debug('End')
+	mylog.info('** end')
 
+if __name__ == '__main__':
+	os.system('clear')
+	run('adr-119')
