@@ -1,5 +1,8 @@
+import config
+
 def is_relationship(param):
-	valid = ['father','mother', 'partner', 'husband', 'wife']
+#	valid = ['father','mother', 'partner', 'husband', 'wife']
+	valid = config.valid_relationships
 	if not param:
 		param = ''
 
