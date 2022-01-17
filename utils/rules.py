@@ -9,7 +9,7 @@ def is_relationship(param):
 	return 1 if param.lower() in valid else 0
 
 def is_category_code(param):
-	valid =  ['01','02', '03']
+	valid =  config.valid_category_codes #['01','02', '03']
 	if not param:
 		param = ''
 
