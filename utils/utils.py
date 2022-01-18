@@ -10,10 +10,10 @@ def MyLog(name,level):
 def NZ(arg):
         return arg if arg else ''
 
-def traffic_light(param):
-        if param[0] > 0:
-                return colored('POSTIVE','green')
-        elif param[0] < 0:
+def traffic_light(score):
+        if score[0] > 0:
+                return colored('POSITIVE','green')
+        elif score[0] < 0:
                 return colored('NEGATIVE','red')
         else:
                 return colored('NEUTRAL','yellow')
