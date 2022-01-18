@@ -25,7 +25,7 @@ def is_over_15(param):
 def in_range(param, min_value=0, max_value=15):
 	if not param:
 		return 0
-	if param in range(min_value, max_value):
+	if param in range(min_value, max_value+1):
 		return 1
 	else:
 		return 0
