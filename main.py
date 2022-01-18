@@ -10,10 +10,10 @@ from utils.utils import  MyLog, NZ, traffic_light, convertTuple
 
 def run(adr):
 	mylog=MyLog(__name__, logging.INFO)
-	mylog.info('** applying feature rules for {}'.format(adr))
+	mylog.info('\n** Applying feature rules for {}'.format(adr))
 
 	if adr not in features.keys():
-		mylog.error('ERROR: No features defined for ADR: {}'.format(adr))
+		mylog.error('** ERROR: No features defined for ADR: {}'.format(adr))
 		return None
 
 	for d in testdata:
@@ -32,7 +32,7 @@ def run(adr):
 								NZ(dargs), convertTuple(fargs)
 				 ))
 
-	mylog.info('** end')
+	mylog.info('** End **')
 
 if __name__ == '__main__':
 	os.system('clear')
