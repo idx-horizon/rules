@@ -5,7 +5,7 @@ import utils.rules as rules
 from utils.features import features
 from data.dataset import testdata
 
-from utils.utils import  MyLog, NZ, traffic_light
+from utils.utils import  MyLog, NZ, traffic_light, convertTuple
 
 
 def run(adr):
@@ -20,14 +20,16 @@ def run(adr):
 		mylog.info('\n** Test case: [{}]'.format(d))
 		for f in features[adr]:
 			func=f['function']
-			args=d.get(f['params'],'_missing_'+f['params'])
-			result= func(args) if not str(args).startswith('_missing_') else 0
-			mylog.info('{:<20} {:>2} - {:<15}: {}({:>2})'.format(
+			dargs = d.get(f['dargs'],'_missing_'+f['dargs'])
+			fargs = f.get('fargs',())
+			result= func(dargs, *fargs) if not str(dargs).startswith('_missing_') else  (0, 'NOT_PROVIDED')
+			mylog.info('\t{:<20} {:>2} {:<20} - {:<25}: {}({:>2},{})'.format(
 								traffic_light(result),
-								result,
+								result[0],
+								result[1],
 								f['description'],
 								func.__name__,
-								NZ(args)
+								NZ(dargs), convertTuple(fargs)
 				 ))
 
 	mylog.info('** end')
