@@ -1,10 +1,9 @@
 
 import random
-print(random.randrange(1,10))
 
 def get_random(badratio, lower, upper,category):
 	bad = random.randrange(0,100)
-	bad_list = ['', None, 'bad', 'invalid', 'rubbish']
+	bad_list = ['', None, 'bad', 'invalid']
 	relationship_list = ['father','mother', 'boyfriend', 'girlfriend','ex']
 
 	if bad < badratio:
