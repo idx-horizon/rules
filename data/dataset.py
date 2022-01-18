@@ -6,4 +6,9 @@ testdata = [
 	{'id': 5, 'v_age': ''},
 	{'id': 6, 'v_age': 'rubbish_data'},
 	{'id': 7, 'v_age': 15.5, 'o_age': '17.2'},
+	{'id': 8, 'v_age': 4, 'o_age': 22, 'relationship': None, 'category_code': '79'},
+	{'id': 9, 'v_age': 1, 'o_age': 18, 'relationship': 'rubbish', 'category_code': '21'},
+	{'id': 10, 'v_age': 41, 'o_age': 14, 'relationship': 'boyfriend', 'category_code': '1'},
+	{'id': 11, 'v_age': 38, 'o_age': 24, 'relationship': 'ex', 'category_code': '28'},
+	{'id': 12, 'v_age': 0, 'o_age': 14, 'relationship': 'ex', 'category_code': '42'},
 ]
