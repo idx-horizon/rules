@@ -1,3 +1,8 @@
+import gen_data
+
+def load_data(fn):
+	return gen_data.load(fn)
+
 testdata = [
 	{'id': 1, 'v_age': 15, 'o_age':23, 'relationship': 'Partner', 'category_code': '99'},
 	{'id': 2, 'v_age': 23, 'o_age':10, 'relationship': 'Stranger','category_code': '02'},
