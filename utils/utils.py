@@ -8,7 +8,20 @@ def loaddata(fn):
 def MyLog(name,level):
         log = logging.Logger(name)
         log.addHandler(logging.StreamHandler())
-        log.setLevel(level)
+        
+        ch = logging.StreamHandler()
+        ch.setLevel(level)
+        
+        fh = logging.FileHandler('my_output.log')
+        fh.setLevel(logging.DEBUG)
+
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s = %(message)s')
+        
+        fh.setFormatter(formatter)
+        
+        log.addHandler(ch)
+        log.addHandler(fh)        
+#        log.setLevel(level)
         return log
 
 def NZ(arg):
