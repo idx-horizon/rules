@@ -1,3 +1,4 @@
+import sys
 import datetime
 import logging
 import os
@@ -63,4 +64,13 @@ def run(fn, adr, logginglevel=logging.INFO):
 
 if __name__ == '__main__':
 	os.system('clear')
-	run('testdata/10.csv', 'adr-119', logging.INFO)
+
+	if len(sys.argv):
+		fn = sys.argv[1]
+		adr = sys.argv[2]
+	else:
+		fn = 'testdata/test_10.csv'
+		adr = 'adr-119'
+	
+	
+	run(fn, adr, logging.INFO)
