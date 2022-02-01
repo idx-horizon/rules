@@ -13,13 +13,13 @@ from utils.utils import  MyLog, NZ, traffic_light, convertTuple, loaddata
 def  report_summary(results):
 	c = Counter()
 	c.update([traffic_light(x) for x in results])
-	c['TOTAL_NEGATIVE'] = sum([x[0] for x in results if x[0] < 0])
-	c['TOTAL_POSITIVE'] = sum([x[0] for x in results if x[0] > 0])
-	c['TOTAL_SCORE'] = sum([x[0] for x in results])
+	c['SCORE_POSITIVE'] = sum([x[0] for x in results if x[0] > 0])
+	c['SCORE_NEGATIVE'] = sum([x[0] for x in results if x[0] < 0])
+	c['SCORE'] = sum([x[0] for x in results])
 
 	line = ''
 	for  ele in c: 
-		line+= '{} = {}  '.format(ele, c[ele])
+		line+= '{} = {:<3}  '.format(ele, c[ele])
 
 	return line
 
@@ -37,7 +37,7 @@ def run(fn, adr, logginglevel=logging.INFO):
 	ix = 0
 	for d in this_data:
 		ix += 1
-		mylog.debug('\n** Test case: [{}]'.format(d))
+		mylog.info('\n** Test case: [{}]'.format(d))
 		summary = []
 		for f in features[adr]:
 			func=f['function']
