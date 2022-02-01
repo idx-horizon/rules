@@ -7,7 +7,7 @@ def loaddata(fn):
 
 def MyLog(name,level):
         log = logging.getLogger(name)
-        if not loh.handlers:
+        if not log.handlers:
             ch = logging.StreamHandler()
             ch.setLevel(level)
         
