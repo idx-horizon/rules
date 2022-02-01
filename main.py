@@ -69,7 +69,7 @@ if __name__ == '__main__':
 		fn = sys.argv[1]
 		adr = sys.argv[2]
 	else:
-		fn = 'testdata/test_10.csv'
+		fn = 'testdata/10.csv'
 		adr = 'adr-119'
 	
 	
