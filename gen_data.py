@@ -39,7 +39,7 @@ def getnow(fmt='%H:%M:%S %d-%b-%Y'):
 
 def  make_data(fn, limit=5):
 	print('\n** {} - Start: make_data({}, limit={})\n'.format(getnow(), fn,limit))
-	with open(fn,'w', newline='') as fh:
+	with open(fn,'w') as fh:
 		for i in range(1,limit+1):
 			data = {'id': i,
 				'v_age':          get_random('num', 15, 0, 50),
