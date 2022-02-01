@@ -1,5 +1,9 @@
 import logging
+import pandas
 from termcolor import colored
+
+def loaddata(fn):
+        return pandas.read_csv(fn,dtype='str').fillna('').to_dict(orient='records')
 
 def MyLog(name,level):
         log = logging.Logger(name)

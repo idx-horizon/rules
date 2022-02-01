@@ -6,9 +6,9 @@ from collections import Counter
 import utils.rules as rules
 from utils.features import features
 #from data.dataset import testdata
-import data.dataset 
+#import data.dataset 
 
-from utils.utils import  MyLog, NZ, traffic_light, convertTuple
+from utils.utils import  MyLog, NZ, traffic_light, convertTuple, loaddata
 
 def  report_summary(results):
 	c = Counter()
@@ -22,8 +22,8 @@ def  report_summary(results):
 
 	return line
 
-def run(adr):
-	mylog=MyLog(__name__, logging.INFO)
+def run(fn, adr, logginglevel=logging.INFO):
+	mylog=MyLog(__name__, logginglevel)
 	mylog.info('Started at: {}'.format(datetime.datetime.now()))
 	mylog.info('\n** Applying feature rules for {}'.format(adr))
 
@@ -31,8 +31,7 @@ def run(adr):
 		mylog.error('** ERROR: No features defined for ADR: {}'.format(adr))
 		return None
 
-	fn = 'testdata.csv'
-	this_data = data.dataset.load_data(fn)
+	this_data = loaddata(fn)
 	mylog.info('** Loaded {} records from {}'.format(len(this_data), fn))
 	ix = 0
 	for d in this_data:
@@ -44,7 +43,7 @@ def run(adr):
 			dargs = d.get(f['dargs'],'__MISSING__')
 			fargs = f.get('fargs',())
 			result= func(dargs, *fargs) if not str(dargs).startswith('__MISSING__') else  (0, 'NOT_PROVIDED')
-			if ix < 6 or ix < len(this_data)-ix:
+			if ix < 4 or len(this_data)-ix < 3:
 				mylog.debug('\t{:<20} {:>2} {:<20} - {:<25}: {}({:>2},{})'.format(
 								traffic_light(result),
 								result[0],
@@ -63,4 +62,4 @@ def run(adr):
 
 if __name__ == '__main__':
 	os.system('clear')
-	run('adr-119')
+	run('testdata/10.csv', 'adr-119')
