@@ -6,7 +6,7 @@ def loaddata(fn):
         return pandas.read_csv(fn,dtype='str').fillna('').to_dict(orient='records')
 
 def MyLog(name,level):
-        log = logging.getLogger(name)
+        log = logging.Logger(name)
         if not log.handlers:
             ch = logging.StreamHandler()
             ch.setLevel(level)
