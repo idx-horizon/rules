@@ -6,21 +6,20 @@ def loaddata(fn):
         return pandas.read_csv(fn,dtype='str').fillna('').to_dict(orient='records')
 
 def MyLog(name,level):
-        log = logging.Logger(name)
-        log.addHandler(logging.StreamHandler())
+        log = logging.getLogger(name)
+        if not loh.handlers:
+            ch = logging.StreamHandler()
+            ch.setLevel(level)
         
-        ch = logging.StreamHandler()
-        ch.setLevel(level)
-        
-        fh = logging.FileHandler('my_output.log')
-        fh.setLevel(logging.DEBUG)
+            fh = logging.FileHandler('my_output.log')
+            fh.setLevel(logging.DEBUG)
 
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s = %(message)s')
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s = %(message)s')
         
-        fh.setFormatter(formatter)
+            fh.setFormatter(formatter)
         
-        log.addHandler(ch)
-        log.addHandler(fh)        
+            log.addHandler(ch)
+            log.addHandler(fh)        
 #        log.setLevel(level)
         return log
 
