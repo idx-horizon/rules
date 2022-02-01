@@ -65,7 +65,7 @@ def run(fn, adr, logginglevel=logging.INFO):
 if __name__ == '__main__':
 	os.system('clear')
 
-	if len(sys.argv):
+	if len(sys.argv) > 1:
 		fn = sys.argv[1]
 		adr = sys.argv[2]
 	else:

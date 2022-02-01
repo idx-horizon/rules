@@ -59,7 +59,7 @@ def  make_data(fn, limit=5):
 
 
 if __name__ == '__main__':
-	if len(sys.argv):
+	if len(sys.argv) > 1:
 		fn = sys.argv[1]
 		limit = int(sys.argv[2])
 	else:
