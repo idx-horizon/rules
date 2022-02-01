@@ -15,6 +15,7 @@ def  report_summary(results):
 	c.update([traffic_light(x) for x in results])
 	c['TOTAL_NEGATIVE'] = sum([x[0] for x in results if x[0] < 0])
 	c['TOTAL_POSITIVE'] = sum([x[0] for x in results if x[0] > 0])
+	c['TOTAL_SCORE'] = sum([x[0] for x in results])
 
 	line = ''
 	for  ele in c: 
@@ -56,10 +57,10 @@ def run(fn, adr, logginglevel=logging.INFO):
 			summary.append(result)
 
 		report_line = report_summary(summary)
-		mylog.debug('** SUMMARY: {}'.format(report_line))
+		mylog.info('** SUMMARY: {}'.format(report_line))
 
 	mylog.info('\n** End at: {}'.format(datetime.datetime.now()))
 
 if __name__ == '__main__':
 	os.system('clear')
-	run('testdata/10.csv', 'adr-119')
+	run('testdata/10.csv', 'adr-119', logging.INFO)
