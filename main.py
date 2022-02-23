@@ -70,7 +70,7 @@ if __name__ == '__main__':
 		adr = sys.argv[2]
 	else:
 		fn = 'testdata/10.csv'
-		adr = 'adr-119'
+		adr = 'online-crime' #'adr-119'
 	
 	
 	run(fn, adr, logging.INFO)

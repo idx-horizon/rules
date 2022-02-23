@@ -3,20 +3,21 @@ import utils.parse as parse
 
 NOT_PROVIDED = (0, 'NOT_PROVIDED')
 
-def is_stab(param):
-	if not param: return  NOT_PROVIDED
+def has_keyword(param, score_postive, score_neutral, score_negative, kw):
+	if not param: return (score_neutral, 'NOT_PROVIDED')
 
 	rulesets = parse.get_rulesets()
-	transforms = parse.get_regexes()
-	
+	transforms  = parse.get_regexes()
+
 	tmp = param
 	for rule in rulesets:
 		r = transforms[rule['rex']]
 		tmp = r.sub(rule['replace_with'], tmp)
-		
-	return (3, 'STAB') if '[STAB]' in tmp else (-1, 'NOT_STAB')
-	
-		
+
+	cleankw = kw.replace('[','').replace(']','')
+	return (score_postive, cleankw) if  kw in tmp else  (score_negative, f'NOT_{cleankw}')
+
+
 def is_relationship(param):
 	if not param: return  NOT_PROVIDED
 
